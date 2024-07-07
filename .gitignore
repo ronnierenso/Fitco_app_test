@@ -39,3 +39,4 @@ yarn-error.log*
 # dependencies BACKEND
 /backend/dist/
 /backend/node_modules/
+/backend/.env
