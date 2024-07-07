@@ -2,10 +2,13 @@ import {Controller, Get, Post, Body, Param, Delete, Query, UseGuards} from '@nes
 import { ChatRoomService } from './chat_room.service';
 import { CreateChatRoomDto } from './dto/create-chat_room.dto';
 import {PaginationDto} from '../common/dto/pagination.dto';
-import {ApiResponse, ApiTags} from '@nestjs/swagger';
+import {ApiBearerAuth, ApiResponse, ApiTags} from '@nestjs/swagger';
 import {ChatRoom} from './entities/chat_room.entity';
+import {AuthGuard} from '@nestjs/passport';
 
 @ApiTags('Chat room')
+@ApiBearerAuth()
+@UseGuards(AuthGuard())
 @Controller('chat-room')
 export class ChatRoomController {
   constructor(private readonly chatRoomService: ChatRoomService) {}
