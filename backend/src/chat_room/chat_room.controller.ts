@@ -1,4 +1,4 @@
-import {Controller, Get, Post, Body, Param, Delete, Query} from '@nestjs/common';
+import {Controller, Get, Post, Body, Param, Delete, Query, UseGuards} from '@nestjs/common';
 import { ChatRoomService } from './chat_room.service';
 import { CreateChatRoomDto } from './dto/create-chat_room.dto';
 import {PaginationDto} from '../common/dto/pagination.dto';

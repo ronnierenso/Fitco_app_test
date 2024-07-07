@@ -6,6 +6,7 @@ import { ChatRoomModule } from './chat_room/chat_room.module';
 import { CommonModule } from './common/common.module';
 import { AuthModule } from './auth/auth.module';
 import { MessageModule } from './message/message.module';
+import { MessageWsModule } from './message-ws/message-ws.module';
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import { MessageModule } from './message/message.module';
    ChatRoomModule,
    CommonModule,
    AuthModule,
-   MessageModule
+   MessageModule,
+   MessageWsModule
   ],
 })
 export class AppModule {}
