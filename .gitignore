@@ -41,3 +41,4 @@ yarn-error.log*
 /backend/dist/
 /backend/node_modules/
 /backend/.env
+/frontend/.env
