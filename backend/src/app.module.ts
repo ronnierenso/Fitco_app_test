@@ -5,6 +5,7 @@ import * as process from "process";
 import { ChatRoomModule } from './chat_room/chat_room.module';
 import { CommonModule } from './common/common.module';
 import { AuthModule } from './auth/auth.module';
+import { MessageModule } from './message/message.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { AuthModule } from './auth/auth.module';
     }),
    ChatRoomModule,
    CommonModule,
-   AuthModule
+   AuthModule,
+   MessageModule
   ],
 })
 export class AppModule {}
