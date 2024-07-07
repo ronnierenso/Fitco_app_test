@@ -7,12 +7,14 @@ import {User} from './entities/user.entity';
 import {PassportModule} from '@nestjs/passport';
 import {JwtModule} from '@nestjs/jwt';
 import {JwtStrategy} from './strategies/jwt.strategy';
+import {MailModule} from '../mail/mail.module';
 
 @Module({
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
   imports:[
     ConfigModule,
+    MailModule,
     TypeOrmModule.forFeature([User]),
     PassportModule.register({defaultStrategy:'jwt'}),
     JwtModule.registerAsync({

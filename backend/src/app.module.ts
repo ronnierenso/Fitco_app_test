@@ -7,6 +7,7 @@ import { CommonModule } from './common/common.module';
 import { AuthModule } from './auth/auth.module';
 import { MessageModule } from './message/message.module';
 import { MessageWsModule } from './message-ws/message-ws.module';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -25,7 +26,8 @@ import { MessageWsModule } from './message-ws/message-ws.module';
    CommonModule,
    AuthModule,
    MessageModule,
-   MessageWsModule
+   MessageWsModule,
+   MailModule
   ],
 })
 export class AppModule {}

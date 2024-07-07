@@ -13,6 +13,7 @@ import * as bcrypt from 'bcrypt'
 import {LoginUserDto} from './dto/login-user.dto';
 import {JwtInterfaces} from './interfaces/jwt.interfaces';
 import {JwtService} from '@nestjs/jwt';
+import {MailService} from '../mail/mail.service';
 
 @Injectable()
 export class AuthService {
@@ -21,7 +22,8 @@ export class AuthService {
   constructor(
    @InjectRepository(User)
    private readonly userRepository: Repository<User>,
-   private readonly jwtService:JwtService
+   private readonly jwtService:JwtService,
+   private readonly mailService: MailService
   ) { }
   
   /**
@@ -43,6 +45,7 @@ export class AuthService {
       
       delete user.password;
       delete user.isActive
+      await this.mailService.sendMail(process.env.MAIL_USER, 'Welcome', 'Thank you for registering!');
       return {
         ...user
       }
@@ -63,6 +66,7 @@ export class AuthService {
     if(!bcrypt.compareSync(password, user.password))
       throw  new UnauthorizedException('Error credentials password')
     delete user.password;
+    await this.mailService.sendMail(process.env.MAIL_USER, 'Login', 'Login ');
     return {
       ...user,
       token: this.getJwtToken({id:user.id})
