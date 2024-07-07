@@ -5,7 +5,7 @@
 /frontend/.pnp
 /frontend/.pnp.js
 /frontend/.yarn/install-state.gz
-
+/frontend/package-lock.json
 # testing
 /frontend/coverage
 
@@ -37,6 +37,7 @@ yarn-error.log*
 
 
 # dependencies BACKEND
+/backend/package-lock.json
 /backend/dist/
 /backend/node_modules/
 /backend/.env

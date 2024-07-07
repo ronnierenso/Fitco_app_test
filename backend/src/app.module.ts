@@ -2,7 +2,9 @@ import { Module } from '@nestjs/common';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {ConfigModule} from "@nestjs/config";
 import * as process from "process";
-import { ChatRoomModule } from './products/chat_room/chat_room.module';
+import { ChatRoomModule } from './chat_room/chat_room.module';
+import { CommonModule } from './common/common.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -17,7 +19,9 @@ import { ChatRoomModule } from './products/chat_room/chat_room.module';
       autoLoadEntities:true,
       synchronize:true //only dev
     }),
-   ChatRoomModule
+   ChatRoomModule,
+   CommonModule,
+   AuthModule
   ],
 })
 export class AppModule {}

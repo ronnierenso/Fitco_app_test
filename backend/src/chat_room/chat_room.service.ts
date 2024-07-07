@@ -3,6 +3,7 @@ import { CreateChatRoomDto } from './dto/create-chat_room.dto';
 import {InjectRepository} from '@nestjs/typeorm';
 import {ChatRoom} from './entities/chat_room.entity';
 import {Repository} from 'typeorm';
+import {PaginationDto} from '../common/dto/pagination.dto';
 
 @Injectable()
 export class ChatRoomService {
@@ -30,10 +31,15 @@ export class ChatRoomService {
   
   /**
    * Find all chat rooms.
+   * @param paginationDto Pagination options (limit, offset).
    * @returns List of chat room entities.
    */
-  async findAll() {
-    return await this.chatRoomRepository.find();
+  async findAll(paginationDto:PaginationDto) {
+    const {limit = 10, offset = 0} = paginationDto
+    return await this.chatRoomRepository.find({
+      take:limit,
+      skip:offset
+    })
   }
   
   /**
