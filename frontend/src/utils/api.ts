@@ -28,7 +28,7 @@ export const useGetDataAuth = (url: string, token:string) => {
       return result;
     } catch (err) {
       if (err instanceof Error) {
-        setErrorGetDataAuth(err);
+        setErrorGetDataAuth(err.response.data);
       } else {
         setErrorGetDataAuth(new Error('Error desconocido'));
       }

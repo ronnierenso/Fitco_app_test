@@ -11,7 +11,7 @@ interface LoginFormInterface {
   register: UseFormRegister<FieldValues>;
   control: Control<FieldValues>
 }
-export const LoginForm: React.FC<LoginFormInterface> = ({ onSubmit, register, control, errors }) => {
+export const RegisterForm: React.FC<LoginFormInterface> = ({ onSubmit, register, control, errors }) => {
   
   const inputClass = classNames(
  'block w-full rounded-md border-0 py-1.5 px-4 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
@@ -19,7 +19,7 @@ export const LoginForm: React.FC<LoginFormInterface> = ({ onSubmit, register, co
   
   const labelClass = classNames(
    'block text-sm font-medium leading-6 text-gray-900',
-   {'text-red-500': errors.email});
+   {'text-red-500': (errors.email && errors.password && errors.password)});
   return (
    <>
      <div className="flex min-h-full flex-1">
@@ -28,7 +28,7 @@ export const LoginForm: React.FC<LoginFormInterface> = ({ onSubmit, register, co
            <div>
              
              <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">
-               Login
+               Register
              </h2>
            
            </div>
@@ -60,8 +60,8 @@ export const LoginForm: React.FC<LoginFormInterface> = ({ onSubmit, register, co
                  
                  <div>
                    <label
-                      htmlFor="password"
-                      className={labelClass}
+                    htmlFor="password"
+                    className={labelClass}
                    >
                      Password
                    </label>
@@ -77,22 +77,32 @@ export const LoginForm: React.FC<LoginFormInterface> = ({ onSubmit, register, co
                    </div>
                  </div>
                  
+                 <div>
+                   <label
+                    htmlFor="fullname"
+                    className={labelClass}
+                   >
+                     Full name
+                   </label>
+                   <div className="mt-2">
+                     <input
+                      type="text"
+                      {...register('fullname')}
+                      className={inputClass}
+                     />
+                     {errors.fullname && (
+                      <span className="mb-2 text-xs text-red-500">{errors.fullname.message}</span>
+                     )}
+                   </div>
+                 </div>
+                 
                  <div className="flex items-center justify-between">
                    <div className="flex items-center">
-                     <input
-                      id="remember-me"
-                      name="remember-me"
-                      type="checkbox"
-                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                     />
-                     <label htmlFor="remember-me" className="ml-3 block text-sm leading-6 text-gray-700">
-                       Remember me
-                     </label>
                    </div>
                    
                    <div className="text-sm leading-6">
                      <Link href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                       Forgot password?
+                       Login
                      </Link>
                    </div>
                  </div>
@@ -102,7 +112,7 @@ export const LoginForm: React.FC<LoginFormInterface> = ({ onSubmit, register, co
                     type="submit"
                     className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                    >
-                     Login
+                     Register
                    </button>
                  </div>
                </form>

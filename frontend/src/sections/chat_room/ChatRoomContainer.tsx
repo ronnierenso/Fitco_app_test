@@ -2,17 +2,41 @@
 import {FieldValues} from 'react-hook-form';
 import React, {useEffect, useState} from 'react';
 import { useGetDataAuth,} from '@/utils/api';
+import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
+import {useRouter} from 'next/navigation';
 
 export const ChatRoomContainer: React.FC<FieldValues> = () => {
+  const router = useRouter();
   const token = (typeof localStorage !== 'undefined')? localStorage.getItem('token'): '';
-  const { getDataAuth } = useGetDataAuth(`/chat-room`, token);
+  const { getDataAuth, errorGetDataAuth } = useGetDataAuth(`/chat-room`, token);
   const [chatRoom, setChatRoom] = useState();
+  
   useEffect( () => {
     const fetchData = async () => {
       setChatRoom( await  getDataAuth());
+      
     };
     fetchData();
   }, [setChatRoom]);
+  
+  const showSwal = (errorGetDataAuth) => {
+    withReactContent(Swal).fire({
+      icon: "error",
+      title: errorGetDataAuth.message,
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+  
+  
+  if(errorGetDataAuth){
+    showSwal(errorGetDataAuth)
+    setTimeout(function() {
+      router.push('/auth/login')
+    }, 2000);
+    
+  }
   if(!chatRoom){
     return null
   }
