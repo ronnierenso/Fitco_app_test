@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 type RegisterInputs = {
   email: string;
   password: string;
-  fullname:string;
+  fullName:string;
 };
 
 const roleSchema = z.object({
@@ -13,7 +13,7 @@ const roleSchema = z.object({
    .email('Error email format'),
   password: z.string()
    .regex(/(?:(?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,'The password must have a Uppercase, lowercase letter and a number'),
-  fullname: z.string()
+  fullName: z.string()
    .min(10,'Error fullname min length 10'),
 }) satisfies z.ZodType<RegisterInputs>;
 

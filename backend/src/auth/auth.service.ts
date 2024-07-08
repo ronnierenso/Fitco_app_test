@@ -47,7 +47,8 @@ export class AuthService {
       delete user.isActive
       await this.mailService.sendMail(process.env.MAIL_USER, 'Welcome', 'Thank you for registering!');
       return {
-        ...user
+        ...user,
+        token: this.getJwtToken({id:user.id})
       }
     }catch (e) {
       this.handleExceptions(e)

@@ -60,8 +60,9 @@ export const usePostData = (url: string) => {
       mutate(url);
       return result;
     } catch (err) {
+      
       if (err instanceof Error) {
-        setError(err);
+        setError(err.response.data);
       } else {
         setError(new Error('Error desconocido'));
       }

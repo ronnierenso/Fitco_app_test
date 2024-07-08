@@ -15,11 +15,11 @@ export const RegisterForm: React.FC<LoginFormInterface> = ({ onSubmit, register,
   
   const inputClass = classNames(
  'block w-full rounded-md border-0 py-1.5 px-4 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
-       {'ring-red-400 focus:ring-red-600': errors.email});
+       {'ring-red-400 focus:ring-red-600': (errors.email || errors.password || errors.fullName)});
   
   const labelClass = classNames(
    'block text-sm font-medium leading-6 text-gray-900',
-   {'text-red-500': (errors.email && errors.password && errors.password)});
+   {'text-red-500': (errors.email || errors.password || errors.fullName)});
   return (
    <>
      <div className="flex min-h-full flex-1">
@@ -79,7 +79,7 @@ export const RegisterForm: React.FC<LoginFormInterface> = ({ onSubmit, register,
                  
                  <div>
                    <label
-                    htmlFor="fullname"
+                    htmlFor="fullName"
                     className={labelClass}
                    >
                      Full name
@@ -87,11 +87,11 @@ export const RegisterForm: React.FC<LoginFormInterface> = ({ onSubmit, register,
                    <div className="mt-2">
                      <input
                       type="text"
-                      {...register('fullname')}
+                      {...register('fullName')}
                       className={inputClass}
                      />
                      {errors.fullname && (
-                      <span className="mb-2 text-xs text-red-500">{errors.fullname.message}</span>
+                      <span className="mb-2 text-xs text-red-500">{errors.fullName.message}</span>
                      )}
                    </div>
                  </div>
@@ -101,7 +101,7 @@ export const RegisterForm: React.FC<LoginFormInterface> = ({ onSubmit, register,
                    </div>
                    
                    <div className="text-sm leading-6">
-                     <Link href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                     <Link href="/auth/login" className="font-semibold text-indigo-600 hover:text-indigo-500">
                        Login
                      </Link>
                    </div>
